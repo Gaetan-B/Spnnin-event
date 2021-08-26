@@ -1,7 +1,12 @@
 <?php
 session_start();
-    include('config/database.php')
-
+/* if(!isset($_SESSION['ID']) || isset($_SESSION['ID']) != 0) {
+    header('location: index.php');
+} */
+    include('config/database.php');
+    if(!isset($_SESSION['username']) || ($_SESSION['username'] != 'admin' && $_SESSION['password'] != 1234)) {
+        header('location: index.php');
+    }
 
 ?>
 
@@ -16,11 +21,11 @@ session_start();
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body >
     <div class="container">
         <?php require_once('header.php'); ?>
         <section>
-            <a href="create_event.php">Créer un évenement</a>
+            <a href="create_event.php" class="btn btn-outline-dark">Créer un évenement</a>
         </section>
         <section class="site-container">
             <div class="row">

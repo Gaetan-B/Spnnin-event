@@ -3,23 +3,6 @@ session_start();
     date_default_timezone_set('Europe/Brussels');
     
     include("config/database.php");    
-
-    if(isset($_GET["action"]) and $_GET["action"] == "logout") {
-        session_unset();
-    }
-    else if(isset($_SESSION["userID"])) {
-        $sql = "SELECT * FROM users ";
-        $sql .= "WHERE ID = '".$_SESSION["userID"]."' ";
-        
-        if($result = $mysqli->query($sql)) {
-            switch($result->num_rows) {
-                case 1: // on a trouvé!!!
-                    $connecte = true;
-                    $utilisateur = $result->fetch_array();
-                break;
-            }
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
